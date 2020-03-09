@@ -1,0 +1,105 @@
+# -*- coding: utf-8 -*-
+# 05.03.2019 Julia Müller
+# revised by Anna Jäkel
+
+# This .yaml file acts as a bibliography for all parameters that are needed.
+
+#------------------------------
+# Filename of the inputfile:
+inputfile : "spiral_best_print.svg"
+
+# List of strings with colour hexcodes (50 layer)
+# for each colour print elements in that colour --> layers
+colourlist : [["000000", "000000", "000000", "000000", "000000",
+             "000000", "000000", "000000", "000000", "000000",
+             "000000", "000000", "000000", "000000", "000000"]]
+
+# Name of the used liquid:
+liquid : "Agarose F500"
+
+# Liquidparamters [flowspeed, nozzle temperature, bed temperature]:
+liquidparameters : [500, 45, 0]
+
+#volume [ , , ]
+volume_gel : [0.0, 0.0, 0.0]
+#------------------------------
+
+# Paramters for the printer:
+#------------------------------
+# Radius of the ___ syringe:
+syringe_radius : 4.5 # in mm
+
+# Innerdiameter of the nozzle:
+# possible values: 0.11(Gelb) | 0.15(Lavendel) | 0.20(Klar) | 0.25(Rot) | 0.33(Orange) | 0.41(Blau)
+nozzle_diam : 0.20 # in mm
+
+# Height of object slide and object slide holder
+# [sheight=height of object slide, hheight=height of the object slide holder]
+height : [1.1, 5.0]
+
+# homeheight
+homeheight : 9.7
+
+# Conversion ratio of the syringe = 1.5
+# possible values: 3(2x) | 4.5(3x) | 7.5(5x) | 10.5(7x)
+conversion_ratio_syringe : 1.5
+
+pump_length : 0 #in mm
+o00set : 50
+#------------------------------
+
+
+# Parameters that can be changed to optimize print:
+#--------------------------
+# This parameter determines if the object should be filled with another gel:
+fillstatus : False
+
+# This paramter determines if the object gel or the filling gel should be
+# printed first
+filllater : False # True=first lines then filling, False=first filling then lines
+
+# change security_distance to change the distance between two filler lines and
+# printed line to filler line (is equal)
+security_distance : 5 #
+security_distance_x : 5 #
+#------------------------------
+# Tells the printer if it is at the beginning of the print or in the middle of the print
+begin_of_print : 0
+
+# This paramter determines how the extrudes volume should be increased:
+increase_volume_factor : 3.0
+
+# This parameter determines the distance that the nozzle should move from the
+# home position before it starts:
+startdis : 30 # in mm
+
+# This paramter determines how the height per layer is reduced:
+red_delta_z : 1.6
+
+# This paramter determines the height added to z during movements:
+z_safe_dis : 3
+
+#------------------------------
+# This paramter determines if the nozzle-sample distance should be changed
+# after a given number of layers:
+# 1=after 'max_normal_layer layers' the z_height is multiplied by dim_z_later
+# 0=isn't multiplied
+scale_z : True
+
+# This paramter determines after how many layers the height should be reduced:
+max_normal_layer : 5 # from experiments determined
+
+# This parameter determines how the height sample-nozzle should be changed
+# after a given number of layers:
+dim_z_later : -0.5
+
+#------------------------------
+# scale the height quadratically:
+scale_z_squared : False
+
+# factor that decreases the quadratic part of the reduce-z-function
+red_z_square : 0.01
+#------------------------------
+# This parameter determines if the corner adjustment should happen or not
+corner_adjustment : False
+slippage : 0.5
