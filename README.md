@@ -4,7 +4,7 @@
 This repo contains all the files needed to create gcode files for the gel printer.
 
 ## How to use?
-Download all the files in this repo.
+Download all the files in this repo. All files are written for Python 3.0
 
 To create a printer file, open a bash inside the folder where the following programs are: 
 - executor.py
