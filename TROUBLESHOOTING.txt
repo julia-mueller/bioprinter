@@ -1,0 +1,33 @@
+TROUBLESHOOTING
+
+Here we upload a list of frequently upcoming issues and how to solve them.
+
+- Too few arguments
+    --> try changing the stroke thickness, if it is 1pt, some vector graphic software does not include the stroke command to the .svg list and hence 1 argument is missing
+
+- ModuleNotFoundError
+    --> check if all files mentioned in the section "How to use?" of the README.md file are in your gel-printer folder
+    
+- python: can't open file 'executor.py': [Errno 2] No such file or directoy 
+    --> check if you are in the correct folder in the command line, if not change your location with the command "cd path_to_the_correct_folder"
+    --> check if the parameterfile that you try to use is in the folder "parameterfiles"
+    --> check if the svg file, that you mentioned in the used parameterfile, is in the folder "svgfiles" 
+    
+- TypeError: can't multiply sequence by non-int of type 'float'
+    --> check if all the numbers in the paramterfile are written in this format "2.0" and not "2,0" 
+    
+- IndexError: list index out of range
+    --> check if your svg file has the correct format as given in the README.md file 
+    
+- printer is printing outside of your objectholder
+    --> check if the stratdis is correct
+    --> check if the offset is correct
+    --> check if the origin is at the correct position of your svg file
+    --> check if your design in the svg file has the correct dimensions (the python code reads in the numbers as millimeter)
+    
+- NameError: name '***' is not defined
+    --> check if you are using Python 3.0 instead of another version (commonly Python 2.7) as some commands are different
+
+- SyntaxError: invalid syntax
+    --> check if you are using Python 3.0 instead of another version (commonly Python 2.7) as some commands are different
+    --> check if your console allows you to include Python packages like import.math

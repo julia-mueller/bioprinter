@@ -29,6 +29,7 @@ if __name__ == "__main__":
         filehandle = open(sys.argv[1], "r")
         params = yaml.safe_load(filehandle)
         params['parameterfile'] = sys.argv[1]
+        params['liquidparameters'] = [params['flowspeed'], params['nozzle_temp'], params['bed_temp']]
         outputfile = g.generate_gcode_file_get_volume(params)
         volume = list(np.around(np.array(params['volume_gel']),2))
         

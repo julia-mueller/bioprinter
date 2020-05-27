@@ -60,7 +60,7 @@ def write_middle_routine_get_layers(params, begin_of_print,
     for layer in range(0, layers):
         
         #smallstart for modified gel
-        if params['fillstatus'] or params['begin_of_print']:
+        if params['begin_of_print']:
             gcode_append, volume_add, extrude_old = smallstart(params, extruderno,
                                                            extrude_old)
             gcode = gcode + str(gcode_append)
@@ -136,7 +136,8 @@ def smallstart(params, extruderno, extrude_old):
         volume_add (double): volume that shoulb be added to the extruded volume
         extrude_old (list): list of the last extruded volume for each extruder
     """
-
+    
+    # 
     gcode_append = constants.smallstart.format(str(params['height'][1]), 
                                                str(6 * params['liquidparameters'][0]), 
                                                str(params['startdis']+5), 
@@ -179,7 +180,16 @@ def cleaning_routine(params):
     Returns:
         gcode_cleaning (str): gcode for the cleaning routine
     """
-
+    
+    # the +5 after the startdis is needed because the cleaning hardware is attached to the builtplate 
+    # at level of the x-axis 
+    
+    # the +10 after the startdis is added, because the printing process worked better with that. 
+    # For our printer it was important to overshoot the startpoint of the print
+    # that means that the printhead moves from the lower left corner to the upper right corner 
+    # and passes the startpoint, then every layer of the print will be started, with the printhead
+    # coming from the direction of the endpoint of each layer
+    
     gcode_cleaning = "    ;cleaning routine follows:\n"\
         + "    G1 F5000 X" + str(params['startdis']+5) + " Y70 ;move to cleaning position\n"\
         + "    G1 Z1.1\n"\

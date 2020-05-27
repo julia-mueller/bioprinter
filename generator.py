@@ -37,7 +37,6 @@ def generate_gcode_file_get_volume(params):
     params['nozzle_radius'] = params['nozzle_diam'] / 2
     params['extrusion_ratio'] = (params['nozzle_radius']**2)/(params['syringe_radius']**2)
     params['filename'] = get_filename(params)
-    params['size'] = get_size(params['inputfile'])
     params['list_of_lines'], params['list_of_circles'] = generate_lists(params)
 
     outputfile = put_routines_together(params)
@@ -88,46 +87,6 @@ def get_filename(params):
 
 
     return filename_new
-
-def get_size(inputfile):
-    """
-    This function opens the inputfile and reads the size of of the svg file.
-
-    Args:
-        inputfile (string): inputfilename (svg file)
-    Returns:
-        size (list): size of the whole file size[0]=x_achse und size[1]=y_achse
-    """
-
-    size=[0.0, 0.0] # Size of the object slice [slice width x, slice length y]
-    svgfile = open("svgfiles/" + inputfile,"r")
-
-    # get number of lines in svg file -> number of elements to print
-    svg_lines = sum(1 for line in svgfile)
-
-    # jump to beginning of the file
-    svgfile.seek(0)
-
-    for l in range(0, svg_lines):
-        svg = svgfile.readline()
-        svg_parts = svg.split(' ')
-
-        if svg_parts[0] == "<svg":
-
-            size1 = svg_parts[6].split('\"')
-            size[0] = float(size1[1])
-
-            size2 = svg_parts[7].split('\"')
-            size[1] = float(size2[1])
-
-        elif l == svg_lines and size == [0.0, 0.0]:
-            print("No size given in svg file.")
-            break
-
-        else:
-            pass
-
-    return size
 
 def put_routines_together(params):
     """
@@ -180,7 +139,13 @@ def generate_start_routine(params):
     """
 
     _, time = get_datetime()
-
+    
+    # the +10 after the startdis is added, because the printing process worked better with that. 
+    # For our printer it was important to overshoot the startpoint of the print
+    # that means that the printhead moves from the lower left corner to the upper right corner 
+    # and passes the startpoint, then every layer of the print will be started, with the printhead
+    # coming from the direction of the endpoint of each layer
+    
     start_code = constants.info_message.format(str(time),
                                                str(params['liquid']),
                                                str(params['nozzle_diam']),
