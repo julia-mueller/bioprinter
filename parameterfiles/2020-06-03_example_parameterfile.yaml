@@ -1,0 +1,47 @@
+# -*- coding: utf-8 -*-
+# 03.06.2020 Anna Jäkel
+
+# This .yaml file acts as a bibliography for all parameters that are needed.
+
+#------------------------------
+# Update these material parameters for each print:
+
+inputfile: "spiral_best_print.svg" 
+colourlist: [["000000", "000000", "000000", "000000", "000000",
+             "000000", "000000", "000000", "000000", "000000",
+             "000000", "000000", "000000", "000000", "000000"]]
+nozzle_temp: 45 
+height: [1.1, 5.0]
+red_delta_z: 1.6
+increase_volume_factor: 2.0 
+
+#------------------------------
+# Update these material parameters to optimize your print results:
+
+scale_z: True
+max_normal_layer: 5 
+dim_z_later: -0.5
+scale_z_squared: False
+red_z_square: 0.01
+corner_adjustment: False
+
+#------------------------------
+# Update these parameters for your own printer at first usage:
+
+syringe_radius: 4.5
+nozzle_diam: 0.2
+flowspeed: 500
+conversion_ratio_syringe: 1.5
+offset: 50
+homeheight: 9.7
+slippage: 0.5
+startdis: 30
+
+#------------------------------
+# The parameterfile initializes the following global variables, these do not need to be changed manually:
+
+volume_gel: [0.0, 0.0, 0.0]
+begin_of_print: 0
+z_safe_dis: 3
+
+#------------------------------
