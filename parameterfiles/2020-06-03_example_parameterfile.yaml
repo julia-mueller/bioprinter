@@ -10,7 +10,9 @@ inputfile: "spiral_best_print.svg"
 colourlist: [["000000", "000000", "000000", "000000", "000000",
              "000000", "000000", "000000", "000000", "000000",
              "000000", "000000", "000000", "000000", "000000"]]
+liquid : "bioink"
 nozzle_temp: 45 
+bed_temp: 0s
 height: [1.1, 5.0]
 red_delta_z: 1.6
 increase_volume_factor: 2.0 
@@ -43,5 +45,6 @@ startdis: 30
 volume_gel: [0.0, 0.0, 0.0]
 begin_of_print: 0
 z_safe_dis: 3
+fillstatus : False
 
 #------------------------------
