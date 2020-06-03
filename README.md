@@ -37,10 +37,7 @@ In the following the lines the svg file should look like this:
 As for now it is important that exactly those arguments follow the argument <line.
 
 ## Write Parameterfiles
-The parameterfile must be a .yaml file which can be written with a simple texteditor. The name should contain the date and the name of the svg file which should be used. 
-
---> The format should be: yyyy-mm-dd-'name_of_svg_file'.yaml
-(IS THIS RELEVANT OR ONLY UP TO SOMEONES COMFORT? würds löschen, wenn es keinen unterschied macht, vielleicht wollen leute das auch nach Initialen+Datum oder ähnliches benennen)
+The parameterfile must be a .yaml file which can be written with a simple texteditor. We recommend that the name should contain the date and the name of the svg file which should be used. 
 
 It should contain all the following paramters:
 
@@ -80,12 +77,6 @@ The parameterfile initializes the following global variables, these do not need 
 ### Guidelinetable
 Below are the optimal values given for specific gels:
 - Bioink: Flowspeed = 500, Nozzle Temperature = 45, Bed Temperature = 0 (0 is given here as standart, because we disabled this function as our printer can't cool and doesn't use this parameter)
-
-### Abbreviations (used in the name of the gcode file): (DOES THIS DO ANYTHING WITH THE GCODE? IF NOT ONLY TO E14 WIKI)
-	squ-option = quadratic function for height reducement (as some hydrogels tend to shrink in higher layers)
-	corn-option = corner adjustment, to prevent slippage of the printer after a change in direction (i.e. after the first and third corner)
-	step-option = stepfunction for heightreducement (=1 after a set number of layers)
-    --> option = on/off  
     
 ## Infos to temperature settings
 - printbed temperature: if you use the onboard printbed heating you can set this paramter in the parameterfile
@@ -104,6 +95,7 @@ start_routine = "M107	; turn fan off" + "\n"\
 but it should look like this if you prefere heating, but not waiting with the print till the set temeperature is reached: 
 ```
 start_routine = "M107	; turn fan off" + "\n"\
+        + "M302	;allow cold extrudes" + "\n"\
         + "M140 S{0} ;heats build plate to to the bed_temp parameter, no waiting + "\n"\
         + "M104 S{1} ;heats nozzle to the nozzle_temp parameter, no waiting
         + "G21 ;metric values\n"\
@@ -111,11 +103,11 @@ start_routine = "M107	; turn fan off" + "\n"\
 and it ahould look like that if you prefere heating, and want to wait with the print till the temeperature is reached:
 ```
 start_routine = "M107	; turn fan off" + "\n"\
+        + "M302	;allow cold extrudes" + "\n"\
         + "M190 S{0} ;heats build plate to the bed_temp parameter incl waiting to reach this temperature" + "\n"\
         + "M109 S{1} ;heats nozzle to the nozzle_temp parameter incl waiting to reach this temperature" + "\n"\
         + "G21 ;metric values\n"\
 ```
->> or whatever you set in nozzle_temp. KANN MAN DANN JA BEI BEIDEN OPTIONEN MACHEN ODER?
     
 ## FAQ's
 - For questions concerning the code check out the Troubleshooting file. 
